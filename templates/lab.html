@@ -1,0 +1,113 @@
+{% extends 'main.html' %}
+<!-- <!DOCTYPE html>
+<html>
+<head>
+	<title>Faculty's Total Load</title>
+
+    {% load static %} 
+       <link rel="stylesheet" href="{% static 'styles/style-main.css' %}"/>
+       <link rel="stylesheet" href="{% static 'styles/css/bootstrap.min.css' %}"/>
+	
+</head>
+<body> -->
+
+
+{% block content %}
+		<div class="row">
+		   <div class="col-md-7">
+				<div class="row">
+						<div class="card-body">
+							<h1 style="text-align: left;">Lab List with specific lab load</h1>
+						</div>
+						<div class="card text-center mb-3" id="total-faculty">
+							<div class="card-header" style="background-color: #4cb4c7;">
+								<h5 class="card-title"><b>Total Labs</b></h5>
+							</div>
+							<div class="card-body">
+							  <h4 class="card-title">{{total_labs}}</h4>
+							  <!-- <a href="#" ><span class="btn btn-outline-info"><b>Add Lab</b></span></a> -->
+							</div>
+					  	</div>
+				</div>
+				<div class="card card-body">
+					<table class="table">
+							<tr>
+								<!-- <th>Sr No.</th> -->
+								<th>Lab code</th>
+								<th>Lab Name</th>
+                                <th>Lab Abbreviation</th>
+                                <th>Semester</th>
+								<th>Specific Lab Load</th>
+								{% if request.user.is_staff %}
+								<th>Update</th>
+								<th>Remove</th>
+								{% endif %}
+							</tr>
+						
+						<tbody>
+							{% for loads in lab %}
+
+									<tr>
+										<!-- <td>{{loads.id}}</td> -->
+										<td>{{loads.lab_code}}</td>
+										<td>{{loads.subject_name}}</td>
+                                        <td>{{loads.subject_abv}}</td>
+                                        <td>{{loads.semester}}</td>
+										<td>{{loads.lab_load}}</td>
+										{% if request.user.is_staff %}
+										<td><a href="/edit_lab/{{loads.id}}" ><span class="btn btn-success">Edit</span></a></td>
+										<td><a href="/delete_lab/{{loads.id}}" ><span class="btn btn-danger">Delete</span></a></td>
+										{% endif %}
+									</tr>
+							{% endfor %}
+						</tbody>
+
+					</table>
+				</div>
+			</div>
+			{% if request.user.is_staff %}
+			<div class="card-body">
+				<div class="col-md-11">
+				  <span class="anchor" id="formLogin"></span> 
+					<div class="card card-outline-secondary">
+						<div class="card-header" style="background-color: #4cb4c7;">
+						<h3 class="mb-0">Add New Lab</h3>
+						</div>
+						<div class="card-body">
+						<form class="post-form" id="formLogin" method="POST" action="">
+							{% csrf_token %}
+							<div class="form-group">
+								<label><b>Lab code :</label> 
+								<input type="text" name="lab_code" value="{{lab.lab_code}}"/>
+							</div>
+							<div class="form-group">
+								<label><b>Lab Name :</b></label> 
+								<input type="text" name="subject_name" value="{{lab.subject_name}}"/>
+							</div>
+							<div class="form-group">
+								<label><b>Lab Abbreviation :</b></label> 
+								<input type="text" name="subject_abv" value="{{lab.subject_abv}}"/>
+							</div>
+							<div class="form-group">
+								<label><b>Semester :</b></label> 
+								<input type="text" name="semester" value="{{lab.semester}}"/>
+							</div>
+							<div class="form-group">
+								<label><b>Specific Lab load :</b></label> 
+								<input type="text" name="lab_load" value="{{slab.lab_load}}"/>
+							</div>
+							
+							<button class="btn btn-success btn-lg float-right" type="submit">Add Lab</button>
+						</form>
+						</div><!--/card-block-->
+					</div><!-- /form card login -->
+				</div>
+			</div>
+			{% endif %}
+
+		</div>
+	{% endblock content %}
+
+
+<!-- </body>
+</html> -->

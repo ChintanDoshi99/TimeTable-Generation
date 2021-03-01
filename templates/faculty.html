@@ -1,0 +1,100 @@
+{% extends 'main.html' %}
+
+{% block content %}
+		<div class="row">
+		   <div class="col-md-7">
+				<div class="row">
+					<br>
+						<div class="card-body">
+							<h1 style="text-align: left;">Faculty List with total load</h1>
+							<br>
+							<!-- <a href="/download_report" ><span class="btn btn-primary">Generate Excel sheet</span></a> -->
+						</div>
+						<br>
+						<div class="card text-center mb-3" id="total-faculty">
+							<div class="card-header" style="background-color: #4cb4c7;">
+								<h5 class="card-title"><b>Total Faculty</b></h5>
+							</div>
+							<div class="card-body">
+							  <h4 class="card-title">{{total_faculty}}</h4>
+							  <!-- <a href="/addfaculty" ><span class="btn btn-outline-info"><b>Add Faculty</b></span></a> -->
+							</div>
+					  	</div>
+				</div>
+				<div class="card card-body">
+					<table class="table">
+							<tr>
+								<!-- <th>Sr No.</th> -->
+								<th>Employee_ID</th>
+								<th>Name</th>
+								<th>Total Load</th>
+								{% if request.user.is_staff %}
+								<th>Update</th>
+								<th>Remove</th>
+								{% endif %}
+								<th>View Details</th>
+							</tr>
+						
+						<tbody>
+							{% for loads in faculty %}
+
+									<tr>
+										<!-- <td>{{loads.id}}</td> -->
+										<td>{{loads.empId}}</td>
+										<td>{{loads.name}}</td>
+										<td>{{loads.total_load}}</td>
+										{% if request.user.is_staff %}
+										<td><a href="{% url 'edit' loads.id %}" ><span class="btn btn-success">Edit</span></a></td>
+										<td><a href="{% url 'delete' loads.id %}" ><span class="btn btn-danger">Delete</span></a></td>
+										{% endif %}
+										<td><a href="{% url 'edit_load' loads.empId %}"><span class="btn btn-primary">View Details</span></a></td>
+										
+									</tr>
+							{% endfor %}
+						</tbody>
+
+					</table>
+				</div>
+			</div>
+			{% if request.user.is_staff %}
+			<div class="card-body">
+				<div class="col-md-11">
+					<span class="anchor" id="formLogin"></span> 
+					<div class="card card-outline-secondary">
+						<div class="card-header" style="background-color: #4cb4c7;">
+						<h3 class="mb-0" >Add New Faculty</h3>
+						</div>
+						<div class="card-body">
+						<form class="post-form" id="formLogin" method="POST" action="">
+							{% csrf_token %}
+							<!-- <div class="form-group">
+								<label><b>Employee ID :</label> 
+								<input type="text" name="empId" value="{{load.empId}}"/>
+							</div>
+							<div class="form-group">
+								<label><b>Name :</b></label> 
+								<input type="text" name="name" value="{{load.name}}"/>
+							</div>
+							<div class="form-group">
+								<label><b>Total Load :</b></label> 
+								<input type="text" name="total_load" value="{{load.total_load}}"/>
+							</div> -->
+							<div class="tabcontent" id="new">
+                                {{ form.as_p }}
+                                <button class="btn btn-success btn-lg float-right" type="submit">Add Faculty</button>
+                            </div>
+							
+							<!-- <button class="btn btn-success btn-lg float-right" type="submit">Add</button> -->
+						</form>
+						</div><!--/card-block-->
+					</div><!-- /form card login -->
+				</div>
+			</div>
+			{% endif %}
+
+		</div>
+	{% endblock content %}
+
+
+<!-- </body>
+</html> -->

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<style>
+body{
+	margin: 0;
+	padding: 0;
+	/*background: url(lib.jpg);*/
+	/*background-size: center;*/
+	background-attachment: fixed;
+	background-position:center;
+	font-family: sans-serif; 
+}
+
+.login{
+	
+	width: 320px;
+	height: 390px;
+	background: #f1f1f1;
+	color: #000;
+	top: 50%;
+	left: 50%;
+	position: absolute;
+	transform: translate(-50%,-50%);
+	box-sizing: border-box;
+	padding: 60px 30px;
+	border-radius: 20px;
+}
+
+.l1{
+	width: 100px;
+	height: 100px;
+	border-radius: 50%;
+	position: absolute;
+	top: -50px;
+	left: calc(50% - 50px);
+}
+
+h1{
+	margin: 0;
+	padding: 0 0 20px;
+	text-align: center;
+	font-size: 24px;
+}
+
+.login input{
+	width: 100%;
+	margin-bottom: 20px;
+}
+
+.textbox i{
+	width: 26px;
+	float:left;
+	text-align:inherit;
+
+}
+
+.textbox input[type="text"],input[type="password"],input[type="number"] 
+{
+	border:none;
+	border-bottom: 1px solid #fff;
+	background: transparent;
+	/*outline: none;*/
+	height: 40px;
+	color: #000;
+	font-size: 16px;
+	border-radius:4px;
+	border:1px solid #ccc;
+	/*padding: 8px 0;
+	margin: 8px 0;*/
+}
+
+.login  input[type="submit"]
+{
+	border:none;
+	outline: none;
+	height: 40px;
+	background: #60adde;
+	color: #fff;
+	font-size: 18px;
+	border-radius: 20px
+}
+
+.login input[type="submit"]:hover
+{
+	cursor: pointer;
+	background: #fb2525;
+	color:#000;
+}
+
+.login a{
+	
+	font-size: 12px;
+	line-height: 20px;
+	color: darkgrey;
+}
+
+.login a:hover
+{
+	color: #ffc107;
+}
+
+</style>
+</head>
+</html>

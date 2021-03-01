@@ -1,0 +1,24 @@
+{% extends 'main.html' %}
+{% block content %}
+
+{% load static %}
+
+<div class="inner">
+	<div class="vec">
+		<div class="img">
+		<img src="{% static 'images/vect.jpg' %}">
+		</div>
+		<!-- <a href="https://www.freepik.com/free-photos-vectors/calendar">Time-table vector created by stories - www.freepik.com</a> -->
+		 </div>
+</div>
+<div class="card">
+	<div class="txt">
+		<h2>Timetable Generator</h2>
+		<p>Let our Artificial Intelligence schedule your classes.</p>
+	</div>
+</div>
+<div class="card-body">
+	<a href="/download_report" class="link" ><span class="btn btn-primary">Generate Excel sheet</span></a>
+	<a href="{% url 'timetable' %}" class="link1"><span class="btn btn-success">Generate Timetable</span></a>
+</div>
+{% endblock %}

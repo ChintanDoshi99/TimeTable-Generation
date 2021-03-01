@@ -1,0 +1,45 @@
+{% extends 'main.html' %}
+
+{% block content %}
+<br>
+<div class="row justify-content-center">
+    <div class="col-md-6">
+      <!-- <span class="anchor" id="formLogin"></span>  -->
+        <div class="card card-outline-secondary">
+            <div class="card-header" style="background-color: #4cb4c7;">
+            <h3 class="mb-0">Update Division Details</h3>
+            </div>
+            <div class="card-body">
+            <form class="post-form" method="POST" action="/update_sectiondiv/{{division.section_id}}">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label><b>Division Name :</label> 
+                        <input type="text" name="sem_num" value="{{division.section_id}}"/>
+                    <label><b>Semester :</label> 
+                        <input type="text" name="sem_num" value="{{division.sem}}"/>
+                    <label><b>Number of Class in week :</label> 
+                        <input type="text" name="num_class_in_week" value="{{division.num_class_in_week}}"/>
+                </div>
+
+                
+                <div class="form-group row">
+                    <div class="col-md-6">
+                        <a href="/sem/" ><span class="btn btn-success btn-lg btn-block">Back</span></a>
+                    </div>
+                    <div class="col-md-6">
+                        <button class="btn btn-warning btn-lg btn-block" type="submit">Submit</button>
+                    </div>
+                </div>
+                {% if messages %}
+                {% for updaterecord in messages %}
+                <h3 style="color: green;">{{updaterecord}}</h3>
+                {% endfor %}
+                {% endif %}
+            </form>
+            </div><!--/card-block-->
+        </div><!-- /form card login -->
+    </div>
+</div>
+
+
+{% endblock content %}

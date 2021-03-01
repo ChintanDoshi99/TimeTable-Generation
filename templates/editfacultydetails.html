@@ -1,0 +1,48 @@
+{% extends 'main.html' %}
+
+
+{% block content %}
+<br>
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="card card-outline-secondary">
+            <div class="card-header" style="background-color: #4cb4c7;">
+            <h3 class="mb-0">Update Faculty Subject Details</h3>
+            </div>
+            <div class="card-body">
+                <form class="post-form"  method="POST" action="/updatefacultydetails/{{faculty.id}}">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label><b>Subject Name :</label> 
+                        <input type="text" name="subject_abv" value="{{faculty.subject_abv}}"/>
+                    </div>
+                    <div class="form-group">
+                        <label><b>Subject Load :</b></label> 
+                        <input type="text" name="subject_load" value="{{faculty.subject_load}}"/>
+                    </div>
+                    <div class="form-group">
+                        <label><b>Subject Type :</b></label> 
+                        <input type="text" name="subject_type" value="{{faculty.subject_type}}"/>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-md-6">
+                            <a href="{% url 'faculty' %}" ><span class="btn btn-success btn-lg btn-block">Back</span></a>
+                        </div>
+                        <div class="col-md-6">
+                            <button class="btn btn-warning btn-lg btn-block" type="submit" >Submit</button>
+                        </div>
+                    </div>
+                    {% if messages %}
+                    {% for updaterecord in messages %}
+                    <h3 style="color: green;">{{updaterecord}}</h3>
+                    {% endfor %}
+                    {% endif %}
+                </form>
+            </div>
+        </div>
+    </div>
+    
+</div>
+
+
+{% endblock content %}

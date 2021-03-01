@@ -1,0 +1,57 @@
+{% extends 'main.html' %}
+
+	{% block content %}
+	<div class="row">
+		<div class="col-md">
+			<div class="row">
+				<div class="card-body">
+					<h1 style="text-align: left;">Faculty Subject List with their load</h1>
+				</div>
+				<div class="card text-center mb-3" id="total-faculty">
+					<div class="card-header" style="background-color: #4cb4c7;">
+						<h5 class="card-title"><b>Count of subjects</b></h5>
+					</div>
+					<div class="card-body">
+					  <h4 class="card-title">{{subject_count}}</h4>
+					  <a href="#" ><span class="btn btn-outline-info"><b>Add Faculty's Subject</b></span></a>
+					</div>
+				  </div>
+		</div>
+			<div class="card card-body">
+				<table class="table">
+							<tr>
+								<th>Subject Name</th>
+								<th>Subject Load</th>
+								<th>Subject Type</th>
+								<!-- <th>Semester</th> -->
+								{% if request.user.is_staff %}
+								<th>Update</th>
+								<th>Remove</th>
+								{% endif %}
+							</tr>
+						</thead>                   
+						<tbody>
+							{% for loads in parent %}
+									<tr>
+										<td>{{loads.subject_abv}}</td>
+										<td>{{loads.subject_load}}</td>
+										<td>{{loads.subject_type}}</td>
+										<!-- <td>{{loads.faculty.semester}}</td> -->
+										{% if request.user.is_staff %}
+										<td><a href="/editfacultydetails/{{loads.id}}" ><span class="btn btn-sm btn-info">Edit</span></a></td>
+										<td><a href="/deletefacultydetails/{{loads.id}}" ><span class="btn btn-sm btn-danger">Delete</span></a></td>
+										{% endif %}
+									</tr>
+							{% endfor %}
+						</tbody>
+					
+				</table>
+			</div>
+		</div>
+	
+	
+		
+	</div>
+	{% endblock content %}
+<!-- </body>
+</html> -->
